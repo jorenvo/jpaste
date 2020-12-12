@@ -101,11 +101,6 @@ async fn handle_post(data: String) -> Result<impl warp::Reply, Infallible> {
             .status(200)
             .body(format!("https://127.0.0.1/")))
     }
-    //     // Ok(StatusCode::BAD_REQUEST)
-    // } else {
-    //     // Ok("some_url".to_string())
-    // }
-    // Ok("abc".to_string())
 }
 
 fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
@@ -114,11 +109,6 @@ fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> 
 
 #[tokio::main]
 async fn main() {
-    // let hi = warp::path("hello")
-    //     .and(warp::path::param())
-    //     .and(warp::header("user-agent"))
-    //     .map(|param: String, agent: String| format!("Hello {}, whose agent is {}", param, agent));
-
     let localhost = [127, 0, 0, 1];
     let port = 3030;
     let addr = (localhost, port);
