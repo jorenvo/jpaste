@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 use std::convert::Infallible;
-use warp::http::{Response, StatusCode};
+use warp::http::Response;
 use warp::Filter;
 use warp::Rejection;
 
@@ -57,7 +57,7 @@ mod test_handlers {
 
     #[tokio::test]
     async fn rejects_without_j() {
-        let filter = setup();
+        let filter = routes();
         let res = warp::test::request()
             .method("POST")
             .path("/")
@@ -70,7 +70,7 @@ mod test_handlers {
 
     #[tokio::test]
     async fn accepts_with_j() {
-        let filter = setup();
+        let filter = routes();
         let res = warp::test::request()
             .method("POST")
             .path("/")
@@ -78,7 +78,10 @@ mod test_handlers {
             .reply(&filter)
             .await;
         assert_eq!(res.status(), 200, "Valid request");
-        assert!(res.body().starts_with(b"http"), "Should return URL to content");
+        assert!(
+            res.body().starts_with(b"https://127.0.0.1/"),
+            "Should return URL to content"
+        );
     }
 }
 
@@ -91,7 +94,13 @@ fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone 
 }
 
 async fn handle_post(data: String) -> Result<impl warp::Reply, Infallible> {
-    Ok(Response::builder().status(400).body(""))
+    if data.is_empty() {
+        Ok(Response::builder().status(400).body("".to_string()))
+    } else {
+        Ok(Response::builder()
+            .status(200)
+            .body(format!("https://127.0.0.1/")))
+    }
     //     // Ok(StatusCode::BAD_REQUEST)
     // } else {
     //     // Ok("some_url".to_string())
@@ -99,7 +108,7 @@ async fn handle_post(data: String) -> Result<impl warp::Reply, Infallible> {
     // Ok("abc".to_string())
 }
 
-fn setup() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
     post_filter().and_then(handle_post)
 }
 
@@ -110,5 +119,9 @@ async fn main() {
     //     .and(warp::header("user-agent"))
     //     .map(|param: String, agent: String| format!("Hello {}, whose agent is {}", param, agent));
 
-    warp::serve(setup()).run(([127, 0, 0, 1], 3030)).await;
+    let localhost = [127, 0, 0, 1];
+    let port = 3030;
+    let addr = (localhost, port);
+
+    warp::serve(routes()).run(addr).await;
 }
