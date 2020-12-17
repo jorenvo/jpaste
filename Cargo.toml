@@ -9,3 +9,6 @@ edition = "2018"
 [dependencies]
 tokio = { version = "0.2", features = ["full"] }
 warp = "0.2"
+redis = { version = "0.17.0", features = ["tokio-comp"] }
+async-trait = "0.1.42"
+rand = "0.7.3"

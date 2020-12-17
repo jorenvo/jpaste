@@ -1,10 +1,19 @@
+#![warn(clippy::all)]
+use crate::db::{Db, NaiveDb};
 use std::collections::HashMap;
 use std::convert::Infallible;
+use std::sync::Arc;
+use tokio::sync::Mutex;
 use warp::http::Response;
 use warp::Filter;
 use warp::Rejection;
 
+mod db;
+mod utils;
+
 const MAX_PAYLOAD: u64 = 1024 * 1024; // 1 MB
+
+type DbRef = Arc<Mutex<Box<dyn Db>>>;
 
 #[cfg(test)]
 mod test_filters {
@@ -93,17 +102,25 @@ fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone 
         .map(|mut form_map: HashMap<String, String>| form_map.remove("j").unwrap_or(String::new()))
 }
 
+fn with_db(db: DbRef)
+// -> impl Filter<Extract = (Db,), Error = std::convert::Infallible> /* + Clone */
+{
+    warp::any().map(|| db.clone());
+}
+
 async fn handle_post(data: String) -> Result<impl warp::Reply, Infallible> {
     if data.is_empty() {
         Ok(Response::builder().status(400).body("".to_string()))
     } else {
         Ok(Response::builder()
             .status(200)
-            .body(format!("https://127.0.0.1/")))
+            .body(format!("https://127.0.0.1/\n")))
     }
 }
 
 fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+    let db: DbRef = Arc::new(Mutex::new(Box::new(NaiveDb::init())));
+    let x = with_db(db);
     post_filter().and_then(handle_post)
 }
 
