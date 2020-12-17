@@ -3,7 +3,7 @@ use crate::db::{Db, NaiveDb};
 use std::collections::HashMap;
 use std::convert::Infallible;
 use std::sync::Arc;
-use tokio::sync::Mutex;
+use std::sync::Mutex;
 use warp::http::Response;
 use warp::Filter;
 use warp::Rejection;
@@ -13,7 +13,7 @@ mod utils;
 
 const MAX_PAYLOAD: u64 = 1024 * 1024; // 1 MB
 
-type DbRef = Arc<Mutex<Box<dyn Db>>>;
+type DbRef = Arc<Mutex<dyn Db + Send>>;
 
 #[cfg(test)]
 mod test_filters {
@@ -102,13 +102,11 @@ fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone 
         .map(|mut form_map: HashMap<String, String>| form_map.remove("j").unwrap_or(String::new()))
 }
 
-fn with_db(db: DbRef)
-// -> impl Filter<Extract = (Db,), Error = std::convert::Infallible> /* + Clone */
-{
-    warp::any().map(|| db.clone());
+fn with_db(db: DbRef) -> impl Filter<Extract = (DbRef,), Error = std::convert::Infallible> + Clone {
+    warp::any().map(move || db.clone())
 }
 
-async fn handle_post(data: String) -> Result<impl warp::Reply, Infallible> {
+async fn handle_post(data: String, db: DbRef) -> Result<impl warp::Reply, Infallible> {
     if data.is_empty() {
         Ok(Response::builder().status(400).body("".to_string()))
     } else {
@@ -119,9 +117,9 @@ async fn handle_post(data: String) -> Result<impl warp::Reply, Infallible> {
 }
 
 fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-    let db: DbRef = Arc::new(Mutex::new(Box::new(NaiveDb::init())));
-    let x = with_db(db);
-    post_filter().and_then(handle_post)
+    let db: DbRef = Arc::new(Mutex::new(NaiveDb::init()));
+    // let x = with_db(db);
+    post_filter().and(with_db(db)).and_then(handle_post)
 }
 
 #[tokio::main]
