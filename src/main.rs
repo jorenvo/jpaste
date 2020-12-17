@@ -1,10 +1,12 @@
 #![warn(clippy::all)]
 use crate::db::{Db, NaiveDb};
-use std::collections::HashMap;
 use std::convert::Infallible;
+use std::str;
 use std::sync::Arc;
 use std::sync::Mutex;
+use tokio::stream::StreamExt;
 use warp::http::Response;
+use warp::Buf;
 use warp::Filter;
 use warp::Rejection;
 
@@ -53,7 +55,7 @@ mod test_filters {
         let res = warp::test::request()
             .method("POST")
             .path("/")
-            .body("random content")
+            .body("j=randomcontent")
             .reply(&filter)
             .await;
         assert_eq!(res.status(), 200, "POSTS to / are allowed");
@@ -94,12 +96,28 @@ mod test_handlers {
     }
 }
 
+async fn get_content(mut form_data: warp::multipart::FormData) -> Result<String, Infallible> {
+    let first_part = form_data.next().await.unwrap().unwrap();
+    println!("doing part {}", first_part.name());
+    if first_part.name() != "j" {
+        Ok(String::new())
+    } else {
+        let mut val: Vec<u8> = Vec::new();
+        let mut data_stream = first_part.stream();
+        while let Some(partial_val) = data_stream.next().await {
+            val.extend(partial_val.unwrap().bytes());
+        }
+
+        Ok(str::from_utf8(&val).unwrap().to_string())
+    }
+}
+
 fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone {
     warp::post()
         .and(warp::path::end()) // match only /
         .and(warp::body::content_length_limit(MAX_PAYLOAD))
-        .and(warp::body::form())
-        .map(|mut form_map: HashMap<String, String>| form_map.remove("j").unwrap_or(String::new()))
+        .and(warp::filters::multipart::form())
+        .and_then(get_content)
 }
 
 fn with_db(db: DbRef) -> impl Filter<Extract = (DbRef,), Error = std::convert::Infallible> + Clone {
@@ -107,6 +125,7 @@ fn with_db(db: DbRef) -> impl Filter<Extract = (DbRef,), Error = std::convert::I
 }
 
 async fn handle_post(data: String, db: DbRef) -> Result<impl warp::Reply, Infallible> {
+    println!("got data: {}", &data);
     if data.is_empty() {
         Ok(Response::builder().status(400).body("".to_string()))
     } else {
