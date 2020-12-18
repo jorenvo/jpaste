@@ -105,12 +105,27 @@ mod test_handlers {
     #[tokio::test]
     async fn accepts_with_j() {
         let filter = routes();
+        let boundary = "--boundary--";
+        let body = format!(
+            "\
+         --{0}\r\n\
+         content-disposition: form-data; name=\"j\"\r\n\r\n\
+         my value\r\n\
+         --{0}--\r\n\
+         ",
+            boundary
+        );
         let res = warp::test::request()
             .method("POST")
             .path("/")
-            .body("j=my_content")
+            .header(
+                "content-type",
+                format!("multipart/form-data; boundary={}", boundary),
+            )
+            .body(body)
             .reply(&filter)
             .await;
+
         assert_eq!(res.status(), 200, "Valid request");
         assert!(
             res.body().starts_with(b"https://127.0.0.1/"),
