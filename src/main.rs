@@ -46,6 +46,14 @@ mod test_filters {
             .reply(&filter)
             .await;
         assert_eq!(res.status(), 413, "Payload is too large");
+
+        let res = warp::test::request()
+            .method("POST")
+            .path("/")
+            .body("hi")
+            .reply(&filter)
+            .await;
+        assert_eq!(res.status(), 400, "POSTs need a multipart form body");
     }
 
     #[tokio::test]
@@ -79,6 +87,9 @@ mod test_filters {
 #[cfg(test)]
 mod test_handlers {
     use crate::*;
+
+    // #[tokio::test]
+    // async fn rejects without
 
     #[tokio::test]
     async fn rejects_without_j() {
