@@ -88,20 +88,18 @@ mod test_filters {
 mod test_handlers {
     use crate::*;
 
-    // #[tokio::test]
-    // async fn rejects without
-
     #[tokio::test]
     async fn rejects_without_j() {
-        let filter = routes();
+        let routes = routes();
         let res = warp::test::request()
             .method("POST")
             .path("/")
+            .header("content-type", "multipart/form-data; boundary=yolo")
             .body("random content")
-            .reply(&filter)
+            .reply(&routes)
             .await;
         assert_eq!(res.status(), 400, "Should include j= in body");
-        assert_eq!(res.body(), "", "Don't be too verbose ;)")
+        // assert_eq!(res.body(), "", "Don't be too verbose ;)")
     }
 
     #[tokio::test]
@@ -124,19 +122,31 @@ mod test_handlers {
 async fn get_content(mut form_data: warp::multipart::FormData) -> Result<String, Infallible> {
     // form_data is a Stream that yields name: content. content is also a Stream.
     // TODO: can we warp reject here? I think not because it cannot be done statically.
-    let first_part = form_data.next().await.unwrap().unwrap();
-    println!("doing part {}", first_part.name());
-    if first_part.name() != "j" {
-        Ok(String::new())
-    } else {
-        let mut val: Vec<u8> = Vec::new();
-        let mut data_stream = first_part.stream();
-        while let Some(partial_val) = data_stream.next().await {
-            val.extend(partial_val.unwrap().bytes());
-        }
+    let next_data = form_data.next().await;
+    if let Some(value) = next_data {
+        if let Ok(first_part) = value {
+            if first_part.name() != "j" {
+                Ok(String::new())
+            } else {
+                let mut val: Vec<u8> = Vec::new();
+                let mut data_stream = first_part.stream();
+                while let Some(partial_val) = data_stream.next().await {
+                    val.extend(partial_val.unwrap().bytes());
+                }
 
-        Ok(str::from_utf8(&val).unwrap().to_string())
+                Ok(str::from_utf8(&val).unwrap().to_string())
+            }
+        } else {
+            // body is not a valid multipart form
+            Ok(String::new())
+        }
+    } else {
+        // no form body
+        Ok(String::new())
     }
+
+    //let first_part = form_data.next().await.unwrap().unwrap();
+    // println!("doing part {}", first_part.name());
 }
 
 fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone {
