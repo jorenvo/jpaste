@@ -31,7 +31,6 @@ mod test_filters {
             .reply(&filter)
             .await;
         assert_eq!(res.status(), 405, "Only POSTs to / are allowed");
-
         res = warp::test::request()
             .method("POST")
             .path("/uea")
@@ -52,10 +51,25 @@ mod test_filters {
     #[tokio::test]
     async fn accepts_valid() {
         let filter = post_filter();
+        let boundary = "--boundary--";
+        let body = format!(
+            "\
+         --{0}\r\n\
+         content-disposition: form-data; name=\"j\"\r\n\r\n\
+         my value\r\n\
+         --{0}--\r\n\
+         ",
+            boundary
+        );
+
         let res = warp::test::request()
             .method("POST")
             .path("/")
-            .body("j=randomcontent")
+            .header(
+                "content-type",
+                format!("multipart/form-data; boundary={}", boundary),
+            )
+            .body(body)
             .reply(&filter)
             .await;
         assert_eq!(res.status(), 200, "POSTS to / are allowed");
@@ -97,6 +111,8 @@ mod test_handlers {
 }
 
 async fn get_content(mut form_data: warp::multipart::FormData) -> Result<String, Infallible> {
+    // form_data is a Stream that yields name: content. content is also a Stream.
+    // TODO: can we warp reject here? I think not because it cannot be done statically.
     let first_part = form_data.next().await.unwrap().unwrap();
     println!("doing part {}", first_part.name());
     if first_part.name() != "j" {
