@@ -99,7 +99,7 @@ mod test_handlers {
             .reply(&routes)
             .await;
         assert_eq!(res.status(), 400, "Should include j= in body");
-        // assert_eq!(res.body(), "", "Don't be too verbose ;)")
+        assert_eq!(res.body(), "", "Don't be too verbose ;)");
     }
 
     #[tokio::test]
