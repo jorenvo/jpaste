@@ -3,8 +3,8 @@ use crate::db::{Db, NaiveDb};
 use std::convert::Infallible;
 use std::str;
 use std::sync::Arc;
-use std::sync::Mutex;
 use tokio::stream::StreamExt;
+use tokio::sync::Mutex;
 use warp::http::Response;
 use warp::Buf;
 use warp::Filter;
@@ -159,9 +159,6 @@ async fn get_content(mut form_data: warp::multipart::FormData) -> Result<String,
         // no form body
         Ok(String::new())
     }
-
-    //let first_part = form_data.next().await.unwrap().unwrap();
-    // println!("doing part {}", first_part.name());
 }
 
 fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone {
@@ -181,9 +178,11 @@ async fn handle_post(data: String, db: DbRef) -> Result<impl warp::Reply, Infall
     if data.is_empty() {
         Ok(Response::builder().status(400).body("".to_string()))
     } else {
+        let mut db = db.lock().await;
+        let id = db.set_data(data).await;
         Ok(Response::builder()
             .status(200)
-            .body(format!("https://127.0.0.1/\n")))
+            .body(format!("https://127.0.0.1/{}", id)))
     }
 }
 
