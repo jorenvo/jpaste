@@ -94,8 +94,8 @@ mod test_handlers {
     }
 }
 
-pub async fn handle_post(data: String, db: DbRef) -> Result<impl warp::Reply, Infallible> {
-    println!("got data: {}", &data);
+pub async fn handle_post(data: Vec<u8>, db: DbRef) -> Result<impl warp::Reply, Infallible> {
+    println!("got data: {:?}", &data);
     if data.is_empty() {
         Ok(Response::builder().status(400).body("".to_string()))
     } else {
@@ -112,6 +112,6 @@ pub async fn handle_get(id: String, db: DbRef) -> Result<impl warp::Reply, Infal
     let id_future = db.get(&id);
     match id_future.await {
         Some(content) => Ok(Response::builder().status(200).body(content.clone())),
-        None => Ok(Response::builder().status(404).body("".to_string())),
+        None => Ok(Response::builder().status(404).body(Vec::new())),
     }
 }

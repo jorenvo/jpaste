@@ -1,5 +1,4 @@
 use std::convert::Infallible;
-use std::str;
 use tokio::stream::StreamExt;
 use warp::{Buf, Filter, Rejection};
 
@@ -90,14 +89,14 @@ mod test_filters {
     }
 }
 
-async fn get_post_content(mut form_data: warp::multipart::FormData) -> Result<String, Infallible> {
+async fn get_post_content(mut form_data: warp::multipart::FormData) -> Result<Vec<u8>, Infallible> {
     // form_data is a Stream that yields name: content. content is also a Stream.
     // TODO: can we warp reject here? I think not because it cannot be done statically.
     let next_data = form_data.next().await;
     if let Some(value) = next_data {
         if let Ok(first_part) = value {
             if first_part.name() != "j" {
-                Ok(String::new())
+                Ok(Vec::new())
             } else {
                 let mut val: Vec<u8> = Vec::new();
                 let mut data_stream = first_part.stream();
@@ -105,19 +104,19 @@ async fn get_post_content(mut form_data: warp::multipart::FormData) -> Result<St
                     val.extend(partial_val.unwrap().bytes());
                 }
 
-                Ok(str::from_utf8(&val).unwrap().to_string())
+                Ok(val)
             }
         } else {
             // body is not a valid multipart form
-            Ok(String::new())
+            Ok(Vec::new())
         }
     } else {
         // no form body
-        Ok(String::new())
+        Ok(Vec::new())
     }
 }
 
-pub fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone {
+pub fn post_filter() -> impl Filter<Extract = (Vec<u8>,), Error = Rejection> + Clone {
     warp::post()
         .and(warp::path::end()) // match only /
         .and(warp::body::content_length_limit(MAX_PAYLOAD))

@@ -10,9 +10,8 @@ pub type DbRef = Arc<Mutex<dyn Db + Send>>;
 
 #[async_trait]
 pub trait Db {
-    // TODO: don't force the content to be a valid UTF-8 string
-    async fn set(&mut self, data: String) -> String;
-    async fn get(&self, id: &str) -> Option<&String>;
+    async fn set(&mut self, data: Vec<u8>) -> String;
+    async fn get(&self, id: &str) -> Option<&Vec<u8>>;
 }
 
 // pub struct RedisDB {
@@ -34,7 +33,7 @@ pub trait Db {
 // }
 
 pub struct NaiveDb {
-    db: HashMap<String, String>,
+    db: HashMap<String, Vec<u8>>,
 }
 
 impl NaiveDb {
@@ -45,13 +44,13 @@ impl NaiveDb {
 
 #[async_trait]
 impl Db for NaiveDb {
-    async fn set(&mut self, data: String) -> String {
+    async fn set(&mut self, data: Vec<u8>) -> String {
         let id = random_id();
         self.db.insert(id.clone(), data);
         id
     }
 
-    async fn get<'a>(&'a self, id: &str) -> Option<&'a String> {
+    async fn get<'a>(&'a self, id: &str) -> Option<&'a Vec<u8>> {
         self.db.get(id)
     }
 }
