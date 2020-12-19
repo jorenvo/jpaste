@@ -1,8 +1,12 @@
 use crate::utils::random_id;
 use async_trait::async_trait;
+use std::collections::HashMap;
+use std::sync::Arc;
+use tokio::sync::Mutex;
 // use redis::aio::Connection;
 // use redis::AsyncCommands;
-use std::collections::HashMap;
+
+pub type DbRef = Arc<Mutex<dyn Db + Send>>;
 
 #[async_trait]
 pub trait Db {
