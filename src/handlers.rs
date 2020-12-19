@@ -24,14 +24,15 @@ mod test_handlers {
     async fn insert_and_get_content_again() {
         let routes = routes();
         let boundary = "--boundary--";
+        let my_content = "super important content";
         let body = format!(
             "\
          --{0}\r\n\
          content-disposition: form-data; name=\"j\"\r\n\r\n\
-         my value\r\n\
+         {1}\r\n\
          --{0}--\r\n\
          ",
-            boundary
+            boundary, my_content
         );
         let res = warp::test::request()
             .method("POST")
@@ -59,6 +60,11 @@ mod test_handlers {
             .reply(&routes)
             .await;
         assert_eq!(res.status(), 200, "Valid GET request");
+        assert_eq!(
+            res.body(),
+            my_content,
+            "GET request should return previously inserted content"
+        );
     }
 }
 

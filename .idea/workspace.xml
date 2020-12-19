@@ -172,7 +172,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="10207000" />
+      <workItem from="1608314496848" duration="10565000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -258,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608355023828</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Test stubbed GET request">
+      <created>1608355590336</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1608355590336</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +294,8 @@
     <MESSAGE value="Add CLion stuff" />
     <MESSAGE value="Add rejects_invalid_get" />
     <MESSAGE value="Create handlers.rs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create handlers.rs" />
+    <MESSAGE value="Test stubbed GET request" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test stubbed GET request" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
