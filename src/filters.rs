@@ -72,7 +72,7 @@ mod test_filters {
     }
 }
 
-async fn get_content(mut form_data: warp::multipart::FormData) -> Result<String, Infallible> {
+async fn get_post_content(mut form_data: warp::multipart::FormData) -> Result<String, Infallible> {
     // form_data is a Stream that yields name: content. content is also a Stream.
     // TODO: can we warp reject here? I think not because it cannot be done statically.
     let next_data = form_data.next().await;
@@ -104,5 +104,5 @@ pub fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Cl
         .and(warp::path::end()) // match only /
         .and(warp::body::content_length_limit(MAX_PAYLOAD))
         .and(warp::filters::multipart::form())
-        .and_then(get_content)
+        .and_then(get_post_content)
 }

@@ -81,7 +81,6 @@ async fn handle_post(data: String, db: DbRef) -> Result<impl warp::Reply, Infall
 
 fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
     let db: DbRef = Arc::new(Mutex::new(NaiveDb::init()));
-    // let x = with_db(db);
     filters::post_filter()
         .and(with_db(db))
         .and_then(handle_post)
