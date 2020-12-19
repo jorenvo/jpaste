@@ -11,7 +11,7 @@ mod test_filters {
     use std::convert::TryInto;
 
     #[tokio::test]
-    async fn rejects_invalid() {
+    async fn rejects_invalid_post() {
         let filter = post_filter();
         let mut res = warp::test::request()
             .method("GET")
@@ -45,7 +45,7 @@ mod test_filters {
     }
 
     #[tokio::test]
-    async fn accepts_valid() {
+    async fn accepts_valid_post() {
         let filter = post_filter();
         let boundary = "--boundary--";
         let body = format!(
@@ -68,7 +68,18 @@ mod test_filters {
             .body(body)
             .reply(&filter)
             .await;
-        assert_eq!(res.status(), 200, "POSTS to / are allowed");
+        assert_eq!(res.status(), 200, "POSTs to / are allowed");
+    }
+
+    #[tokio::test]
+    async fn accepts_valid_get() {
+        let filter = get_filter();
+        let res = warp::test::request()
+            .method("GET")
+            .path("/some-id")
+            .reply(&filter)
+            .await;
+        assert_eq!(res.status(), 200, "GETs with an id should be allowed");
     }
 }
 
@@ -105,4 +116,8 @@ pub fn post_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Cl
         .and(warp::body::content_length_limit(MAX_PAYLOAD))
         .and(warp::filters::multipart::form())
         .and_then(get_post_content)
+}
+
+pub fn get_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone {
+    warp::get().and(warp::path::param())
 }
