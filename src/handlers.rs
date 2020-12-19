@@ -21,8 +21,8 @@ mod test_handlers {
     }
 
     #[tokio::test]
-    async fn accepts_with_j() {
-        let filter = routes();
+    async fn insert_and_get_content_again() {
+        let routes = routes();
         let boundary = "--boundary--";
         let body = format!(
             "\
@@ -41,14 +41,24 @@ mod test_handlers {
                 format!("multipart/form-data; boundary={}", boundary),
             )
             .body(body)
-            .reply(&filter)
+            .reply(&routes)
             .await;
 
         assert_eq!(res.status(), 200, "Valid request");
+
+        let url = std::str::from_utf8(res.body()).unwrap();
         assert!(
-            res.body().starts_with(b"https://127.0.0.1/"),
+            url.starts_with("https://127.0.0.1/"),
             "Should return URL to content"
         );
+
+        let path = url.strip_prefix("https://127.0.0.1").unwrap();
+        let res = warp::test::request()
+            .method("GET")
+            .path(path)
+            .reply(&routes)
+            .await;
+        assert_eq!(res.status(), 200, "Valid GET request");
     }
 }
 
