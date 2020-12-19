@@ -13,6 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filters.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/filters.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +172,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="8846000" />
+      <workItem from="1608314496848" duration="9041000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -229,7 +230,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608339493463</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add db and utils">
+      <created>1608354297492</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608354297492</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add CLion stuff">
+      <created>1608354309024</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1608354309024</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +269,9 @@
     <MESSAGE value="Insert into db" />
     <MESSAGE value="Move filters to separate module" />
     <MESSAGE value="get_content -&gt; get_post_content" />
-    <option name="LAST_COMMIT_MESSAGE" value="get_content -&gt; get_post_content" />
+    <MESSAGE value="Add db and utils" />
+    <MESSAGE value="Add CLion stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add CLion stuff" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

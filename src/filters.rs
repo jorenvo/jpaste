@@ -72,6 +72,13 @@ mod test_filters {
     }
 
     #[tokio::test]
+    async fn rejects_invalid_get() {
+        let filter = get_filter();
+        let res = warp::test::request().method("GET").reply(&filter).await;
+        assert_eq!(res.status(), 404, "GETs without an id should be rejected");
+    }
+
+    #[tokio::test]
     async fn accepts_valid_get() {
         let filter = get_filter();
         let res = warp::test::request()
