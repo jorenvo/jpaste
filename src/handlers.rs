@@ -21,6 +21,18 @@ mod test_handlers {
     }
 
     #[tokio::test]
+    async fn rejects_non_existing_ids() {
+        let routes = routes();
+        let res = warp::test::request()
+            .method("GET")
+            .path("/doesnt-exist")
+            .reply(&routes)
+            .await;
+        assert_eq!(res.status(), 404, "Non-existing GETs should 404");
+        assert_eq!(res.body(), "", "Body for non-existing GETs should be empty");
+    }
+
+    #[tokio::test]
     async fn insert_and_get_content_again() {
         let routes = routes();
         let boundary = "--boundary--";
@@ -74,13 +86,18 @@ pub async fn handle_post(data: String, db: DbRef) -> Result<impl warp::Reply, In
         Ok(Response::builder().status(400).body("".to_string()))
     } else {
         let mut db = db.lock().await;
-        let id = db.set_data(data).await;
+        let id = db.set(data).await;
         Ok(Response::builder()
             .status(200)
             .body(format!("https://127.0.0.1/{}", id)))
     }
 }
 
-pub async fn handle_get(_id: String, _db: DbRef) -> Result<impl warp::Reply, Infallible> {
-    Ok(Response::builder().status(200).body("".to_string()))
+pub async fn handle_get(id: String, db: DbRef) -> Result<impl warp::Reply, Infallible> {
+    let db = db.lock().await;
+    let id_future = db.get(&id);
+    match id_future.await {
+        Some(content) => Ok(Response::builder().status(200).body(content.clone())),
+        None => Ok(Response::builder().status(404).body("".to_string())),
+    }
 }

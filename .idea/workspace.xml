@@ -14,6 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/handlers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +173,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="10565000" />
+      <workItem from="1608314496848" duration="11631000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -265,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608355590336</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Test if GET returns inserted content">
+      <created>1608355953134</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1608355953134</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +303,8 @@
     <MESSAGE value="Add rejects_invalid_get" />
     <MESSAGE value="Create handlers.rs" />
     <MESSAGE value="Test stubbed GET request" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test stubbed GET request" />
+    <MESSAGE value="Test if GET returns inserted content" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test if GET returns inserted content" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
