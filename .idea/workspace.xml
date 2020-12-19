@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" ENABLED="true" />
+    </configurations>
+  </component>
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/filters.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/filters.rs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="optsam1n" />
+  </component>
+  <component name="ProjectId" id="1lqAxRg1HBBgiS6QLSWHYFkYK5R" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="settings.editor.selected.configurable" value="language.rust.cargo" />
+  </component>
+  <component name="RunManager" selected="Cargo.Run all tests">
+    <configuration name="Run all tests" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="command" value="test" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test test_filters::accepts_valid" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package jpaste --bin jpaste test_filters::accepts_valid -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test test_filters::rejects_invalid" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package jpaste --bin jpaste test_filters::rejects_invalid -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test test_handlers::accepts_with_j" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package jpaste --bin jpaste test_handlers::accepts_with_j -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test test_handlers::rejects_without_j" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package jpaste --bin jpaste test_handlers::rejects_without_j -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="command" value="run" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Cargo.Run all tests" />
+      <item itemvalue="Cargo.Test test_filters::accepts_valid" />
+      <item itemvalue="Cargo.Test test_filters::rejects_invalid" />
+      <item itemvalue="Cargo.Test test_handlers::accepts_with_j" />
+      <item itemvalue="Cargo.Test test_handlers::rejects_without_j" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo.Test test_handlers::accepts_with_j" />
+        <item itemvalue="Cargo.Test test_handlers::rejects_without_j" />
+        <item itemvalue="Cargo.Test test_filters::rejects_invalid" />
+        <item itemvalue="Cargo.Test test_filters::accepts_valid" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="externalLinter" value="Clippy" />
+    <option name="runExternalLinterOnTheFly" value="true" />
+    <option name="runRustfmtOnSave" value="true" />
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="useRustfmt" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="" />
+      <created>1608314495161</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608314495161</updated>
+      <workItem from="1608314496848" duration="8846000" />
+    </task>
+    <task id="LOCAL-00001" summary="Fix accepts_with_j">
+      <created>1608318348390</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608318348391</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Test POSTs without multipart form">
+      <created>1608318605806</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608318605806</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fix rejects_without_j">
+      <created>1608319974901</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608319974901</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Test body in rejects_without_j">
+      <created>1608320044364</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608320044364</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix accepts_with_j">
+      <created>1608320169344</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608320169344</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Insert into db">
+      <created>1608338154933</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1608338154933</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Move filters to separate module">
+      <created>1608338891841</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1608338891841</updated>
+    </task>
+    <task id="LOCAL-00008" summary="get_content -&gt; get_post_content">
+      <created>1608339493463</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608339493463</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Test POSTs without multipart form" />
+    <MESSAGE value="Fix rejects_without_j" />
+    <MESSAGE value="Test body in rejects_without_j" />
+    <MESSAGE value="Fix accepts_with_j" />
+    <MESSAGE value="Insert into db" />
+    <MESSAGE value="Move filters to separate module" />
+    <MESSAGE value="get_content -&gt; get_post_content" />
+    <option name="LAST_COMMIT_MESSAGE" value="get_content -&gt; get_post_content" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
