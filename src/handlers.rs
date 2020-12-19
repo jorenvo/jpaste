@@ -95,7 +95,6 @@ mod test_handlers {
 }
 
 pub async fn handle_post(data: Vec<u8>, db: DbRef) -> Result<impl warp::Reply, Infallible> {
-    println!("got data: {:?}", &data);
     if data.is_empty() {
         Ok(Response::builder().status(400).body("".to_string()))
     } else {

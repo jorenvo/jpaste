@@ -14,8 +14,6 @@
   <component name="ChangeListManager">
     <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filters.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/filters.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/handlers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +172,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="14936000" />
+      <workItem from="1608314496848" duration="15483000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -288,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608413457849</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Support arbitrary bytes, not just valid UTF-8 strings">
+      <created>1608414079927</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1608414079927</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,7 +326,8 @@
     <MESSAGE value="Test if GET returns inserted content" />
     <MESSAGE value="Implement GETs with NaiveDb" />
     <MESSAGE value="Start working on supporting bytes instead of Strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start working on supporting bytes instead of Strings" />
+    <MESSAGE value="Support arbitrary bytes, not just valid UTF-8 strings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Support arbitrary bytes, not just valid UTF-8 strings" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
