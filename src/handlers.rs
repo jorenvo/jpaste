@@ -32,20 +32,24 @@ mod test_handlers {
         assert_eq!(res.body(), "", "Body for non-existing GETs should be empty");
     }
 
-    #[tokio::test]
-    async fn insert_and_get_content_again() {
+    async fn insert_and_get(msg: &[u8]) {
         let routes = routes();
         let boundary = "--boundary--";
-        let my_content = "super important content";
-        let body = format!(
+        let body_start = format!(
             "\
-         --{0}\r\n\
-         content-disposition: form-data; name=\"j\"\r\n\r\n\
-         {1}\r\n\
-         --{0}--\r\n\
-         ",
-            boundary, my_content
+         --{}\r\n\
+         content-disposition: form-data; name=\"j\"\r\n\r\n",
+            boundary
         );
+        let body_end = format!(
+            "\r\n\
+         --{}--\r\n",
+            boundary
+        );
+        let mut body = body_start.as_bytes().to_owned();
+        body.extend_from_slice(msg);
+        body.extend_from_slice(body_end.as_bytes());
+
         let res = warp::test::request()
             .method("POST")
             .path("/")
@@ -74,9 +78,19 @@ mod test_handlers {
         assert_eq!(res.status(), 200, "Valid GET request");
         assert_eq!(
             res.body(),
-            my_content,
+            msg,
             "GET request should return previously inserted content"
         );
+    }
+
+    #[tokio::test]
+    async fn insert_and_get_string_content_again() {
+        insert_and_get(b"my content").await;
+    }
+
+    #[tokio::test]
+    async fn insert_and_get_byte_content_again() {
+        insert_and_get(&[253, 254, 255]).await;
     }
 }
 
