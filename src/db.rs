@@ -36,8 +36,11 @@ impl RedisDb {
 #[async_trait]
 impl Db for RedisDb {
     async fn set(&mut self, data: Vec<u8>) -> String {
+        const REDIS_EXP_S: usize = 60 * 60 * 24 * 30; // ~1 month
         let id = random_id();
-        let _: () = self.conn.set(self.redis_key(&id), data).await.unwrap();
+        let redis_key = self.redis_key(&id);
+        let _: () = self.conn.set(&redis_key, data).await.unwrap();
+        let _: () = self.conn.expire(&redis_key, REDIS_EXP_S).await.unwrap();
         id
     }
 
