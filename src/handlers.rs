@@ -92,7 +92,7 @@ mod test_handlers {
             "Should return URL to content"
         );
 
-        let path = url.strip_prefix("https://127.0.0.1").unwrap();
+        let path = url.strip_prefix("https://127.0.0.1").unwrap().trim();
         let res = warp::test::request()
             .method("GET")
             .path(path)
