@@ -125,7 +125,11 @@ mod test_handlers {
             .reply(&routes)
             .await;
         assert_eq!(res.status(), 200, "GET to root should return help");
-        assert_eq!(res.body(), HELP, "Should return help text");
+        assert_eq!(
+            res.body(),
+            HELP.replace("{}", "http://127.0.0.1").as_str(),
+            "Should return help text"
+        );
     }
 }
 
