@@ -2,7 +2,6 @@ use crate::utils::random_id;
 use async_trait::async_trait;
 // use redis::AsyncCommands;
 use redis::AsyncCommands;
-use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::Mutex;
 
@@ -47,16 +46,22 @@ impl Db for RedisDb {
     }
 }
 
+#[cfg(test)]
+use std::collections::HashMap;
+
+#[cfg(test)]
 pub struct InMemoryDb {
     db: HashMap<String, Vec<u8>>,
 }
 
+#[cfg(test)]
 impl InMemoryDb {
     pub fn init() -> Self {
         InMemoryDb { db: HashMap::new() }
     }
 }
 
+#[cfg(test)]
 #[async_trait]
 impl Db for InMemoryDb {
     async fn set(&mut self, data: Vec<u8>) -> String {
@@ -69,10 +74,3 @@ impl Db for InMemoryDb {
         self.db.get(id).cloned()
     }
 }
-
-// async fn db_set_data(data: String) -> String {
-//     client
-//         .get_async_connection()
-//         .await
-//         .map_err(|e| RedisClientError(e).into())
-// }

@@ -12,7 +12,10 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="" />
+    <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,7 +172,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="22750000" />
+      <workItem from="1608314496848" duration="23078000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -339,7 +342,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608448458951</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Use cloned directly in InMemoryDb get">
+      <created>1608448508700</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1608448508700</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Remove unnecessary clone">
+      <created>1608448543627</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1608448543627</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,7 +397,9 @@
     <MESSAGE value="Make tests use InMemoryDb and main use Redis" />
     <MESSAGE value="Implement set for RedisDb" />
     <MESSAGE value="Implement RedisDb get" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement RedisDb get" />
+    <MESSAGE value="Use cloned directly in InMemoryDb get" />
+    <MESSAGE value="Remove unnecessary clone" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unnecessary clone" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
