@@ -14,9 +14,11 @@ fn with_db(db: DbRef) -> impl Filter<Extract = (DbRef,), Error = std::convert::I
     warp::any().map(move || db.clone())
 }
 
-async fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+async fn routes(
+    db: impl db::Db + Send + 'static,
+) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
     // let db: DbRef = Arc::new(Mutex::new(InMemoryDb::init()));
-    let db: DbRef = Arc::new(Mutex::new(RedisDb::init().await));
+    let db: DbRef = Arc::new(Mutex::new(db));
 
     let post = filters::post_filter()
         .and(with_db(db.clone()))
@@ -33,6 +35,7 @@ async fn main() {
     let localhost = [127, 0, 0, 1];
     let port = 3030;
     let addr = (localhost, port);
+    let db = RedisDb::init().await;
 
-    warp::serve(routes().await).run(addr).await;
+    warp::serve(routes(db).await).run(addr).await;
 }
