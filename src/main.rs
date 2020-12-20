@@ -1,5 +1,5 @@
 #![warn(clippy::all)]
-use crate::db::{DbRef, InMemoryDb};
+use crate::db::{DbRef, RedisDb};
 use crate::handlers::{handle_get, handle_post};
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -14,8 +14,9 @@ fn with_db(db: DbRef) -> impl Filter<Extract = (DbRef,), Error = std::convert::I
     warp::any().map(move || db.clone())
 }
 
-fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-    let db: DbRef = Arc::new(Mutex::new(InMemoryDb::init()));
+async fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+    // let db: DbRef = Arc::new(Mutex::new(InMemoryDb::init()));
+    let db: DbRef = Arc::new(Mutex::new(RedisDb::init().await));
 
     let post = filters::post_filter()
         .and(with_db(db.clone()))
@@ -33,5 +34,5 @@ async fn main() {
     let port = 3030;
     let addr = (localhost, port);
 
-    warp::serve(routes()).run(addr).await;
+    warp::serve(routes().await).run(addr).await;
 }

@@ -173,7 +173,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="16173000" />
+      <workItem from="1608314496848" duration="18457000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -301,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608415625775</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="NaiveDb -&gt; InMemoryDb&#10;&#10;I hate the word &quot;naive&quot; :|.">
+      <created>1608432218933</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1608432218934</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +343,8 @@
     <MESSAGE value="Start working on supporting bytes instead of Strings" />
     <MESSAGE value="Support arbitrary bytes, not just valid UTF-8 strings" />
     <MESSAGE value="Remove print" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove print" />
+    <MESSAGE value="NaiveDb -&gt; InMemoryDb&#10;&#10;I hate the word &quot;naive&quot; :|." />
+    <option name="LAST_COMMIT_MESSAGE" value="NaiveDb -&gt; InMemoryDb&#10;&#10;I hate the word &quot;naive&quot; :|." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
