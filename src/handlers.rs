@@ -11,7 +11,7 @@ const HELP: &str = "       _                  __
 /___/_/
 
 USAGE
-  $ echo hi | curl -F 'j=<-' {}/j
+  $ echo hi | curl -F 'j=<-' {}
   {}/ZnD9BBwj
   $ curl {}/ZnD9BBwj
   hi 
