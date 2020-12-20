@@ -20,8 +20,8 @@ pub struct RedisDb {
 }
 
 impl RedisDb {
-    pub async fn init() -> Self {
-        let client = redis::Client::open("redis://127.0.0.1/").unwrap();
+    pub async fn init(config: &Config) -> Self {
+        let client = redis::Client::open(config.redis_url.clone()).unwrap();
         RedisDb {
             conn: client.get_async_connection().await.unwrap(),
         }
@@ -48,6 +48,7 @@ impl Db for RedisDb {
     }
 }
 
+use crate::config::Config;
 #[cfg(test)]
 use std::collections::HashMap;
 

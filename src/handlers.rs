@@ -1,3 +1,4 @@
+use crate::config::Config;
 use crate::db::DbRef;
 use std::convert::Infallible;
 use warp::http::Response;
@@ -10,9 +11,9 @@ const HELP: &str = "       _                  __
 /___/_/
 
 USAGE
-  $ echo hi | curl -F 'j=<-' https://jvo.sh/j
-  https://jvo.sh/ZnD9BBwj
-  $ curl https://jvo.sh/ZnD9BBwj
+  $ echo hi | curl -F 'j=<-' {}/j
+  {}/ZnD9BBwj
+  $ curl {}/ZnD9BBwj
   hi 
 ";
 
@@ -148,6 +149,8 @@ pub async fn handle_get(id: String, db: DbRef) -> Result<impl warp::Reply, Infal
     }
 }
 
-pub async fn handle_help() -> Result<impl warp::Reply, Infallible> {
-    Ok(Response::builder().status(200).body(HELP))
+pub async fn handle_help(config: Config) -> Result<impl warp::Reply, Infallible> {
+    Ok(Response::builder()
+        .status(200)
+        .body(HELP.replace("{}", &config.jpaste_public_url)))
 }
