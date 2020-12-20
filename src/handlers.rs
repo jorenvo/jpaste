@@ -8,7 +8,7 @@ mod test_handlers {
 
     #[tokio::test]
     async fn rejects_without_j() {
-        let routes = routes();
+        let routes = routes().await;
         let res = warp::test::request()
             .method("POST")
             .path("/")
@@ -22,7 +22,7 @@ mod test_handlers {
 
     #[tokio::test]
     async fn rejects_non_existing_ids() {
-        let routes = routes();
+        let routes = routes().await;
         let res = warp::test::request()
             .method("GET")
             .path("/doesnt-exist")
@@ -33,7 +33,7 @@ mod test_handlers {
     }
 
     async fn insert_and_get(msg: &[u8]) {
-        let routes = routes();
+        let routes = routes().await;
         let boundary = "--boundary--";
         let body_start = format!(
             "\

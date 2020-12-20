@@ -13,9 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +171,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="18457000" />
+      <workItem from="1608314496848" duration="19035000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -308,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608432218934</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Start implementing async RedisDb">
+      <created>1608436505288</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1608436505288</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +349,8 @@
     <MESSAGE value="Support arbitrary bytes, not just valid UTF-8 strings" />
     <MESSAGE value="Remove print" />
     <MESSAGE value="NaiveDb -&gt; InMemoryDb&#10;&#10;I hate the word &quot;naive&quot; :|." />
-    <option name="LAST_COMMIT_MESSAGE" value="NaiveDb -&gt; InMemoryDb&#10;&#10;I hate the word &quot;naive&quot; :|." />
+    <MESSAGE value="Start implementing async RedisDb" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start implementing async RedisDb" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
