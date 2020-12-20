@@ -136,7 +136,7 @@ pub async fn handle_post(data: Vec<u8>, db: DbRef) -> Result<impl warp::Reply, I
         let id = db.set(data).await;
         Ok(Response::builder()
             .status(200)
-            .body(format!("https://127.0.0.1/{}", id)))
+            .body(format!("https://127.0.0.1/{}\n", id)))
     }
 }
 
