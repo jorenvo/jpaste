@@ -44,10 +44,10 @@ async fn routes(
 
 #[tokio::main]
 async fn main() {
-    let localhost = [127, 0, 0, 1];
-    let port = 3030;
-    let addr = (localhost, port);
     let config = Config::init();
+    let localhost = [127, 0, 0, 1];
+    let port = config.jpaste_localhost_port.parse().unwrap();
+    let addr = (localhost, port);
     let db = RedisDb::init(&config).await;
 
     warp::serve(routes(config, db).await).run(addr).await;
