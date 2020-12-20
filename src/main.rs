@@ -1,6 +1,6 @@
 #![warn(clippy::all)]
 use crate::db::{DbRef, RedisDb};
-use crate::handlers::{handle_get, handle_post};
+use crate::handlers::{handle_get, handle_help, handle_post};
 use std::sync::Arc;
 use tokio::sync::Mutex;
 use warp::Filter;
@@ -23,11 +23,12 @@ async fn routes(
     let post = filters::post_filter()
         .and(with_db(db.clone()))
         .and_then(handle_post);
+    let get_help = filters::help_filter().and_then(handle_help);
     let get = filters::get_filter()
         .and(with_db(db.clone()))
         .and_then(handle_get);
 
-    post.or(get)
+    post.or(get).or(get_help)
 }
 
 #[tokio::main]

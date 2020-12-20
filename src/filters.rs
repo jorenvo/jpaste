@@ -127,3 +127,7 @@ pub fn post_filter() -> impl Filter<Extract = (Vec<u8>,), Error = Rejection> + C
 pub fn get_filter() -> impl Filter<Extract = (String,), Error = Rejection> + Clone {
     warp::get().and(warp::path::param())
 }
+
+pub fn help_filter() -> impl Filter<Extract = (), Error = Rejection> + Clone {
+    warp::get().and(warp::path::end())
+}

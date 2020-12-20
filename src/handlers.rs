@@ -2,8 +2,23 @@ use crate::db::DbRef;
 use std::convert::Infallible;
 use warp::http::Response;
 
+const HELP: &str = "       _                  __
+      (_)___  ____ ______/ /____
+     / / __ \\/ __ `/ ___/ __/ _ \\
+    / / /_/ / /_/ (__  ) /_/  __/
+ __/ / .___/\\__,_/____/\\__/\\___/
+/___/_/
+
+USAGE
+  $ echo hi | curl -F 'j=<-' https://jvo.sh/j
+  https://jvo.sh/ZnD9BBwj
+  $ curl https://jvo.sh/ZnD9BBwj
+  hi 
+";
+
 #[cfg(test)]
 mod test_handlers {
+    use crate::handlers::HELP;
     use crate::*;
 
     async fn create_routes(
@@ -98,6 +113,18 @@ mod test_handlers {
     async fn insert_and_get_byte_content_again() {
         insert_and_get(&[253, 254, 255]).await;
     }
+
+    #[tokio::test]
+    async fn test_help() {
+        let routes = create_routes().await;
+        let res = warp::test::request()
+            .method("GET")
+            .path("/")
+            .reply(&routes)
+            .await;
+        assert_eq!(res.status(), 200, "GET to root should return help");
+        assert_eq!(res.body(), HELP, "Should return help text");
+    }
 }
 
 pub async fn handle_post(data: Vec<u8>, db: DbRef) -> Result<impl warp::Reply, Infallible> {
@@ -119,4 +146,8 @@ pub async fn handle_get(id: String, db: DbRef) -> Result<impl warp::Reply, Infal
         Some(content) => Ok(Response::builder().status(200).body(content)),
         None => Ok(Response::builder().status(404).body(Vec::new())),
     }
+}
+
+pub async fn handle_help() -> Result<impl warp::Reply, Infallible> {
+    Ok(Response::builder().status(200).body(HELP))
 }
