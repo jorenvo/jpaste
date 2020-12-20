@@ -116,7 +116,7 @@ pub async fn handle_get(id: String, db: DbRef) -> Result<impl warp::Reply, Infal
     let mut db = db.lock().await;
     let id_future = db.get(&id);
     match id_future.await {
-        Some(content) => Ok(Response::builder().status(200).body(content.clone())),
+        Some(content) => Ok(Response::builder().status(200).body(content)),
         None => Ok(Response::builder().status(404).body(Vec::new())),
     }
 }
