@@ -24,8 +24,9 @@ mod test_handlers {
 
     async fn create_routes(
     ) -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
+        let config = config::Config::init();
         let db = db::InMemoryDb::init();
-        routes(db).await
+        routes(config, db).await
     }
 
     #[tokio::test]
