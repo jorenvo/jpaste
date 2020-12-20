@@ -133,7 +133,11 @@ mod test_handlers {
     }
 }
 
-pub async fn handle_post(data: Vec<u8>, db: DbRef) -> Result<impl warp::Reply, Infallible> {
+pub async fn handle_post(
+    data: Vec<u8>,
+    config: Config,
+    db: DbRef,
+) -> Result<impl warp::Reply, Infallible> {
     if data.is_empty() {
         Ok(Response::builder().status(400).body("".to_string()))
     } else {
@@ -141,7 +145,7 @@ pub async fn handle_post(data: Vec<u8>, db: DbRef) -> Result<impl warp::Reply, I
         let id = db.set(data).await;
         Ok(Response::builder()
             .status(200)
-            .body(format!("https://127.0.0.1/{}\n", id)))
+            .body(format!("{}/{}\n", config.jpaste_public_url, id)))
     }
 }
 

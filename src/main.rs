@@ -30,6 +30,7 @@ async fn routes(
     let db: DbRef = Arc::new(Mutex::new(db));
 
     let post = filters::post_filter()
+        .and(with_config(config.clone()))
         .and(with_db(db.clone()))
         .and_then(handle_post);
     let get_help = filters::help_filter()
