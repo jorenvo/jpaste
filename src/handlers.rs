@@ -113,7 +113,7 @@ pub async fn handle_post(data: Vec<u8>, db: DbRef) -> Result<impl warp::Reply, I
 }
 
 pub async fn handle_get(id: String, db: DbRef) -> Result<impl warp::Reply, Infallible> {
-    let db = db.lock().await;
+    let mut db = db.lock().await;
     let id_future = db.get(&id);
     match id_future.await {
         Some(content) => Ok(Response::builder().status(200).body(content.clone())),

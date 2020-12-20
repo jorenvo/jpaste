@@ -11,7 +11,7 @@ pub type DbRef = Arc<Mutex<dyn Db + Send>>;
 #[async_trait]
 pub trait Db {
     async fn set(&mut self, data: Vec<u8>) -> String;
-    async fn get(&self, id: &str) -> Option<&Vec<u8>>;
+    async fn get(&mut self, id: &str) -> Option<Vec<u8>>;
 }
 
 const REDIS_PREFIX: &str = "jpaste:";
@@ -28,19 +28,22 @@ impl RedisDb {
             conn: client.get_async_connection().await.unwrap(),
         }
     }
+
+    fn redis_key(&self, id: &str) -> String {
+        REDIS_PREFIX.to_string() + id
+    }
 }
 
 #[async_trait]
 impl Db for RedisDb {
     async fn set(&mut self, data: Vec<u8>) -> String {
         let id = random_id();
-        let key = REDIS_PREFIX.to_string() + &id;
-        let _: () = self.conn.set(key, data).await.unwrap();
+        let _: () = self.conn.set(self.redis_key(&id), data).await.unwrap();
         id
     }
 
-    async fn get<'a>(&'a self, id: &str) -> Option<&'a Vec<u8>> {
-        unimplemented!()
+    async fn get(&mut self, id: &str) -> Option<Vec<u8>> {
+        self.conn.get(self.redis_key(id)).await.unwrap()
     }
 }
 
@@ -62,8 +65,8 @@ impl Db for InMemoryDb {
         id
     }
 
-    async fn get<'a>(&'a self, id: &str) -> Option<&'a Vec<u8>> {
-        self.db.get(id)
+    async fn get(&mut self, id: &str) -> Option<Vec<u8>> {
+        self.db.get(id).map(|bytes| bytes.clone())
     }
 }
 
