@@ -12,11 +12,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers.rs" afterDir="false" />
-    </list>
+    <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,7 +169,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="22657000" />
+      <workItem from="1608314496848" duration="22750000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -336,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608447461298</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Implement RedisDb get">
+      <created>1608448458950</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1608448458951</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +379,8 @@
     <MESSAGE value="Await routes now" />
     <MESSAGE value="Make tests use InMemoryDb and main use Redis" />
     <MESSAGE value="Implement set for RedisDb" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement set for RedisDb" />
+    <MESSAGE value="Implement RedisDb get" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement RedisDb get" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

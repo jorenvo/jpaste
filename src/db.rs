@@ -66,7 +66,7 @@ impl Db for InMemoryDb {
     }
 
     async fn get(&mut self, id: &str) -> Option<Vec<u8>> {
-        self.db.get(id).map(|bytes| bytes.clone())
+        self.db.get(id).cloned()
     }
 }
 
