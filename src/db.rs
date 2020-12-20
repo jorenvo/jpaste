@@ -1,8 +1,10 @@
+use crate::config::Config;
 use crate::utils::random_id;
 use async_trait::async_trait;
 use redis::AsyncCommands;
 use std::sync::Arc;
 use tokio::sync::Mutex;
+use tokio::time::{timeout, Duration};
 
 pub type DbRef = Arc<Mutex<dyn Db + Send>>;
 
@@ -22,8 +24,11 @@ pub struct RedisDb {
 impl RedisDb {
     pub async fn init(config: &Config) -> Self {
         let client = redis::Client::open(config.redis_url.clone()).unwrap();
-        RedisDb {
-            conn: client.get_async_connection().await.unwrap(),
+        match timeout(Duration::from_secs(1), client.get_async_connection()).await {
+            Err(_) => panic!("Couldn't connect to redis within 1 second"),
+            Ok(redis_result) => RedisDb {
+                conn: redis_result.unwrap(),
+            },
         }
     }
 
@@ -48,7 +53,6 @@ impl Db for RedisDb {
     }
 }
 
-use crate::config::Config;
 #[cfg(test)]
 use std::collections::HashMap;
 
