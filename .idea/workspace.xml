@@ -14,8 +14,7 @@
   <component name="ChangeListManager">
     <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +172,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="19876000" />
+      <workItem from="1608314496848" duration="21541000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -322,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608439220560</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Make tests use InMemoryDb and main use Redis">
+      <created>1608440183348</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1608440183348</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +366,8 @@
     <MESSAGE value="NaiveDb -&gt; InMemoryDb&#10;&#10;I hate the word &quot;naive&quot; :|." />
     <MESSAGE value="Start implementing async RedisDb" />
     <MESSAGE value="Await routes now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Await routes now" />
+    <MESSAGE value="Make tests use InMemoryDb and main use Redis" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make tests use InMemoryDb and main use Redis" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,6 +1,7 @@
 use crate::utils::random_id;
 use async_trait::async_trait;
 // use redis::AsyncCommands;
+use redis::AsyncCommands;
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -12,6 +13,8 @@ pub trait Db {
     async fn set(&mut self, data: Vec<u8>) -> String;
     async fn get(&self, id: &str) -> Option<&Vec<u8>>;
 }
+
+const REDIS_PREFIX: &str = "jpaste:";
 
 pub struct RedisDb {
     // Perhaps have a Client instead of sharing the same Connection everywhere?
@@ -30,7 +33,10 @@ impl RedisDb {
 #[async_trait]
 impl Db for RedisDb {
     async fn set(&mut self, data: Vec<u8>) -> String {
-        unimplemented!()
+        let id = random_id();
+        let key = REDIS_PREFIX.to_string() + &id;
+        let _: () = self.conn.set(key, data).await.unwrap();
+        id
     }
 
     async fn get<'a>(&'a self, id: &str) -> Option<&'a Vec<u8>> {
