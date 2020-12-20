@@ -32,18 +32,18 @@ pub trait Db {
 //     }
 // }
 
-pub struct NaiveDb {
+pub struct InMemoryDb {
     db: HashMap<String, Vec<u8>>,
 }
 
-impl NaiveDb {
+impl InMemoryDb {
     pub fn init() -> Self {
-        NaiveDb { db: HashMap::new() }
+        InMemoryDb { db: HashMap::new() }
     }
 }
 
 #[async_trait]
-impl Db for NaiveDb {
+impl Db for InMemoryDb {
     async fn set(&mut self, data: Vec<u8>) -> String {
         let id = random_id();
         self.db.insert(id.clone(), data);

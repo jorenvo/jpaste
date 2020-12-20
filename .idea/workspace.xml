@@ -14,7 +14,8 @@
   <component name="ChangeListManager">
     <list default="true" id="51be2d29-c713-4778-b0a5-bb07c73d5a15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +173,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608314495161</updated>
-      <workItem from="1608314496848" duration="15483000" />
+      <workItem from="1608314496848" duration="16173000" />
     </task>
     <task id="LOCAL-00001" summary="Fix accepts_with_j">
       <created>1608318348390</created>
@@ -293,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608414079927</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Remove print">
+      <created>1608415625775</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1608415625775</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +335,8 @@
     <MESSAGE value="Implement GETs with NaiveDb" />
     <MESSAGE value="Start working on supporting bytes instead of Strings" />
     <MESSAGE value="Support arbitrary bytes, not just valid UTF-8 strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Support arbitrary bytes, not just valid UTF-8 strings" />
+    <MESSAGE value="Remove print" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove print" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,5 +1,5 @@
 #![warn(clippy::all)]
-use crate::db::{DbRef, NaiveDb};
+use crate::db::{DbRef, InMemoryDb};
 use crate::handlers::{handle_get, handle_post};
 use std::sync::Arc;
 use tokio::sync::Mutex;
@@ -15,7 +15,7 @@ fn with_db(db: DbRef) -> impl Filter<Extract = (DbRef,), Error = std::convert::I
 }
 
 fn routes() -> impl Filter<Extract = impl warp::Reply, Error = warp::Rejection> + Clone {
-    let db: DbRef = Arc::new(Mutex::new(NaiveDb::init()));
+    let db: DbRef = Arc::new(Mutex::new(InMemoryDb::init()));
 
     let post = filters::post_filter()
         .and(with_db(db.clone()))
