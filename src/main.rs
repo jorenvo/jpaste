@@ -2,6 +2,7 @@
 use crate::config::Config;
 use crate::db::{DbRef, RedisDb};
 use crate::handlers::{handle_get, handle_help, handle_post};
+use std::net::Ipv4Addr;
 use std::sync::Arc;
 use tokio::sync::Mutex;
 use warp::Filter;
@@ -46,8 +47,8 @@ async fn routes(
 #[tokio::main]
 async fn main() {
     let config = Config::init();
-    let localhost = [127, 0, 0, 1];
-    let port = config.jpaste_localhost_port.parse().unwrap();
+    let localhost: Ipv4Addr = config.jpaste_localhost_ip.parse().unwrap();
+    let port: u16 = config.jpaste_localhost_port.parse().unwrap();
     let addr = (localhost, port);
     let db = RedisDb::init(&config).await;
 

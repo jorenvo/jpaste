@@ -15,4 +15,5 @@ Easiest way to build and run is with cargo:
 Some configuration is possible with environment variables (default values are shown):
   - JPASTE_REDIS='redis://127.0.0.1/'
   - JPASTE_PUBLIC_URL='http://127.0.0.1'
+  - JPASTE_PUBLIC_IP='127.0.0.1'
   - JPASTE_LOCALHOST_PORT='3030'
