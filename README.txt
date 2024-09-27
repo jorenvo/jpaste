@@ -4,9 +4,9 @@ jpaste
 This is a pastebin-like service meant to be used with cURL. It uses Redis for storage and pastes expire after one month.
 
 Example:
-  $ echo hi | curl -F 'j=<-' https://jvo.sh/j
-  https://jvo.sh/ZnD9BBwj
-  $ curl https://jvo.sh/ZnD9BBwj
+  $ echo hi | curl -F 'j=<-' https://example.com/j
+  https://example.com/ZnD9BBwj
+  $ curl https://example.com/ZnD9BBwj
   hi
 
 Easiest way to build and run is with cargo:
